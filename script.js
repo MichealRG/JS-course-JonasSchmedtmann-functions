@@ -52,3 +52,27 @@ const newPassanger = function (person) {
 };
 newPassanger(jonas);
 checkIn(flight, jonas);
+
+//functions with callbacks
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...other] = str.split(' ');
+  return [first.toUpperCase(), ...other].join(' ');
+};
+//higher order function
+const transformed = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log('Transformed string: ' + fn(str));
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformed('JavaScript is the best!', upperFirstWord); //callback function
+transformed('JavaScript is the best!', oneWord); //callback function
+
+const high5 = function () {
+  console.log('👋');
+};
+document.body.addEventListener('click', high5);
