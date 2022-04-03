@@ -76,3 +76,19 @@ const high5 = function () {
   console.log('👋');
 };
 document.body.addEventListener('click', high5);
+
+//funciton return another function
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steve');
+greet('Hello')('Jonas');
+
+const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
+
+greetArrow('Elo')('Miguel');
