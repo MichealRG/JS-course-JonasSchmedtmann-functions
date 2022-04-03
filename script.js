@@ -135,3 +135,53 @@ const flightData = [485, 'Gorge Cooper'];
 book.apply(swiss, flightData);
 
 book.call(swiss, ...flightData);
+
+//bind method
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Steven Williams');
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Miguel Werner');
+
+//With Event listners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+//partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 100));
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(100));
+
+const addTaxReturnFunction = function (rate, value) {
+  return function () {
+    console.log(value + value * rate);
+  };
+};
+const addTaxRetArr =
+  (rate, value) =>
+  (result = value + value * rate) =>
+    console.log(result);
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+addTaxReturnFunction(0.23, 200)();
+addTaxRetArr(0.23, 200);
+addTaxRetArr(0.23, 200)();
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(200));
+console.log(addVAT2(100));
