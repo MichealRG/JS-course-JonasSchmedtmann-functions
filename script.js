@@ -92,3 +92,46 @@ greet('Hello')('Jonas');
 const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
 
 greetArrow('Elo')('Miguel');
+
+//call method
+const lufthansa = {
+  airline: 'lufthansa',
+  iatacode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iatacode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iatacode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book('239', 'Jonas Schmitt');
+lufthansa.book(635, 'Micheal Smith');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iatacode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+//book(23, 'Sarah Williams'); //error
+book.call(eurowings, 23, 'Sarah Conor');
+console.log(eurowings);
+book.call(lufthansa, 239, 'Mary Cooper');
+
+const swiss = {
+  airline: 'Swiss Air Line',
+  iatacode: 'LX',
+  bookings: [],
+};
+book.call(swiss, 99, 'Mary Cooper');
+
+//apply method
+const flightData = [485, 'Gorge Cooper'];
+book.apply(swiss, flightData);
+
+book.call(swiss, ...flightData);
