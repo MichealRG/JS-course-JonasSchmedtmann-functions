@@ -185,3 +185,44 @@ addTaxRetArr(0.23, 200)();
 const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(200));
 console.log(addVAT2(100));
+
+//coding chellange 1
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3:  C++'],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+  displayResults(type) {
+    if (typeof type === 'object') {
+      console.log(type);
+    } else if (typeof type === 'string') {
+      console.log(`Poll results are ${type}`);
+    }
+  },
+};
+
+const registerNewAnswer = function () {
+  const selectedOption = Number(
+    prompt(
+      `What is your favourite programming language?
+    0: JavaScript
+    1: Python
+    2: Rust
+    3: C++
+    (Write option number)`
+    )
+  );
+  if (
+    selectedOption >= 0 &&
+    selectedOption <= 3 &&
+    typeof selectedOption === 'number'
+  ) {
+    this.answers = new Array(4).fill(0);
+    this.answers[selectedOption] = 1;
+    this.displayResults(this.answers);
+  }
+};
+
+document
+  .querySelector('.poll')
+  .addEventListener('click', registerNewAnswer.bind(poll));
