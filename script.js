@@ -265,3 +265,21 @@ document
 poll.displayedResult.call({ answers: [5, 2, 3] });
 poll.displayedResult.call({ answers: [5, 2, 3] }, 'string');
 poll.displayedResult.call({ answers: [1, 5, 3, 9, 6, 1] });
+
+//IIFE Imidietly Invoked Function Expression
+const once = function () {
+  console.log('this will never run again');
+};
+
+once();
+
+(function () {
+  console.log('this will never run again');
+})(); //statement transfer in expressioned
+
+(() => console.log('this will never call again'))();
+
+{
+  const is = 'private'; //not availabe out of scope
+  var ava = 'public'; // avilable
+}
