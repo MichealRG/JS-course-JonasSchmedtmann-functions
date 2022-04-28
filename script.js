@@ -283,3 +283,21 @@ once();
   const is = 'private'; //not availabe out of scope
   var ava = 'public'; // avilable
 }
+
+//closures
+const secureBooking = function () {
+  let passangerCount = 0;
+
+  return function () {
+    passangerCount++;
+    console.log(passangerCount);
+  };
+};
+
+const booker = secureBooking();
+
+booker(); //1
+booker(); //2
+booker(); //3
+
+console.dir(booker);
